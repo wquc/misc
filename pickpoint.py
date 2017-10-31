@@ -12,7 +12,7 @@ class PickPoint(object):
         self.selected, = plt.gca().plot(self.xArr, self.yArr, 'o', 
         	markersize=12, alpha=0.5, color='yellow', visible=False)
     def onpick(self, event):
-        self.dataind = event.ind
+        self.dataind = event.ind[0]
         self.print_coor()
         self.selected.set_visible(True)
         self.selected.set_data(self.xArr[self.dataind], self.yArr[self.dataind])
@@ -25,6 +25,7 @@ class PickPointSequence(PickPoint):
 		super(PickPointSequence, self).__init__(xArr, yArr)
 		self.fasta_name = fasta_name
 		self.fasta_seq  = []
+		self.fasta_offset = fasta_offset
 		with open(self.fasta_name, 'r') as fasta_file:
 			for each_line in fasta_file:
 				if each_line.startswith('>'):
