@@ -43,7 +43,7 @@ if __name__ == "__main__":
 	# Make plot and connect to event
 	line, = plt.plot(x_data, y_data, '-o', lw=2, picker=10)  # pixel tolerance
 	
-	fasta_name = "test_peptide.fasta"
+	fasta_name = "test_pick_point.fasta"
 	fasta_offset = 2 # fasta_offset = nterm_id - x_1
 	# picked_point = PickPoint(x_data, y_data)	# example1 without fasta sequence
 	picked_point = PickPointSequence(x_data, y_data, fasta_name, fasta_offset)	# example2 with fasta sequence
