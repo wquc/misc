@@ -15,6 +15,7 @@ class PickPoint(object):
         self.dataind = event.ind[0]
         self.selected.set_visible(True)
         self.selected.set_data(self.xArr[self.dataind], self.yArr[self.dataind])
+        self.print_coor()
         plt.gcf().canvas.draw()
     def print_coor(self):
     	print '> Selected point: (%s, %s)'%(self.xArr[self.dataind], self.yArr[self.dataind])
