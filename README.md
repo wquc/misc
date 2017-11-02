@@ -1,4 +1,4 @@
-# misc
+# MISC
 Miscellaneous scripts that make life easier
 
 ## draw_protein_ss.py
@@ -8,7 +8,7 @@ Draw protein secondary structure legend on X axis as is shown in the figure:
 
 ## pick_point.py
 
-Print X and Y coordinates of a selected point like the following screenshot:
+Print the **x and y coordinates** of a selected point, or the **residue**(name+index) **and property** of that residue if a **FASTA file** and **offset** are specified, for example:
 ![image of test_pick_point](test_pick_point.png) 
 
 ### Tips for Ubuntu users
