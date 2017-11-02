@@ -6,6 +6,10 @@ Miscellaneous scripts that make life easier
 Draw protein secondary structure legend on X axis as is shown in the figure:
 ![image of test_draw_protein_ss](test_draw_protein_ss.png)
 
+## pick_point.py
+
+Print X and Y coordinates of a selected point like the following screenshot:
+![image of test_pick_point](test_pick_point.png) 
 
 ### Tips for Ubuntu users
 ```bash
