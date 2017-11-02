@@ -13,7 +13,6 @@ class PickPoint(object):
         	markersize=12, alpha=0.5, color='yellow', visible=False)
     def onpick(self, event):
         self.dataind = event.ind[0]
-        self.print_coor()
         self.selected.set_visible(True)
         self.selected.set_data(self.xArr[self.dataind], self.yArr[self.dataind])
         plt.gcf().canvas.draw()
@@ -33,7 +32,7 @@ class PickPointSequence(PickPoint):
 				self.fasta_seq += each_line.strip()
 	def print_coor(self):
 		print '> Selected point: residue %s%s (%s)'%(self.fasta_seq[self.dataind], 
-			self.xArr[self.dataind]+fasta_offset, self.yArr[self.dataind])
+			self.xArr[self.dataind]+self.fasta_offset, self.yArr[self.dataind])
 
 if __name__ == "__main__":
 	from random import randint
