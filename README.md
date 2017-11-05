@@ -4,7 +4,8 @@ Miscellaneous scripts that make life easier
 ## draw_protein_ss.py
 
 Draw protein secondary structure legend on X axis as is shown in the figure:
-<img src="test_draw_protein_ss.png" width="300" height="200" alt="image of test_draw_protein_ss" align="center" />
+
+<img src="test_draw_protein_ss.png" width="600" height="400" alt="image of test_draw_protein_ss" align="center" />
 <!-- ![image of test_draw_protein_ss](test_draw_protein_ss.png){:height="50%" width="50%"} -->
 
 ## pick_point.py
