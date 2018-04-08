@@ -19,9 +19,9 @@ int main(int argc, char* argv[]) {
     if(argc!=9) {
         printf("Wrong number of parameters!\n"); 
         printf("Expect the following (8) arguments:\n"); 
-        printf("Coordinate of SMD atom: x1 y1 z1\n"); 
-        printf("Coordinate of Pore COM: x2 y2 z2\n"); 
-        printf("Radius and Initial_guess\n"); 
+        printf("Coordinate of SMD atom: [x1] [y1] [z1]\n"); 
+        printf("Coordinate of Pore COM: [x2] [y2] [z2]\n"); 
+        printf("[Radius] and [Initial_guess]\n"); 
         return 1;
     }
     // Read and store input
