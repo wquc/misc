@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
         printf("Radius and Initial_guess\n"); 
         return 1;
     }
-    // Read and store input: biocat is too lame for atof();
+    // Read and store input
     double x1 = strtod(argv[1], NULL);  
     double y1 = strtod(argv[2], NULL);
     double z1 = strtod(argv[3], NULL);
@@ -33,15 +33,6 @@ int main(int argc, char* argv[]) {
     double z2 = strtod(argv[6], NULL);
     double R0 = strtod(argv[7], NULL);
     double IG = strtod(argv[8], NULL);
-    
-//    printf("x1=%6.2f\n", x1);
-//    printf("y1=%6.2f\n", y1);
-//    printf("z1=%6.2f\n", z1);
-//    printf("x2=%6.2f\n", x2);
-//    printf("y2=%6.2f\n", y2);
-//    printf("z2=%6.2f\n", z2);
-//    printf("R0=%6.2f\n", R0);
-//    printf("IG=%6.2f\n", IG);
 
     struct Point P1 = {x1, y1, z1};
     struct Point P2 = {x2, y2, z2};
@@ -54,8 +45,6 @@ int main(int argc, char* argv[]) {
         h = func(x, V, P2, R0)/grad(x, V, P2);
         x = x - h;
     }
-    //printf("Solution: %6.4f\n", x); 
-    //intersect(x, V, P2);
     forcevec(x, V, P2);
     return 0;
 }
