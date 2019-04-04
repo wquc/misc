@@ -1,4 +1,4 @@
-# Generate protein secondary structure scheme from SS sequence of PDB database.
+# Draw protein secondary structure scheme from SS sequence of PDB database.
 # This script assumes the input file only contains protein secondary structure 
 # info (may in multiple lines) like the following:
 #"      SS   SS SS SEEEEEEEE SSS  EEEEEEESSHHHHHHHHHHHHTT SSS  EEE  BTTTTEEEEE
