@@ -7,6 +7,8 @@ Draw protein secondary structure legend on X axis as is shown in the figure:
 
 <img src="demo/test_draw_protein_ss.png" width="60%" height="60%" alt="image of test_draw_protein_ss" align="center" />
 
+The asthetics are set by `3-pubfig.py`.
+
 ## 1-data-picker.py
 
 Print the **x and y coordinates** of a selected point, or the **residue**(name+index) **and property** of that residue if a **FASTA file** and **offset** are specified, for example:

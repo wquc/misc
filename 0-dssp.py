@@ -8,7 +8,10 @@
 
 import matplotlib.patches as mpatches
 from matplotlib import pyplot as plt
+import wq.pubset as pset
 import re
+
+pset.setup()
 
 class DrawPorteinSSonXaxis(object):
 	def __init__(self, ss_inp_name):
@@ -29,18 +32,20 @@ class DrawPorteinSSonXaxis(object):
 		self.y_min, self.y_max = plt.gca().get_ylim()
 		self.re_beta_match  = re.compile("E+")
 		self.re_alpha_match = re.compile("H+")
+
 	def __draw_alpha(self, a_start, a_end, y_max, y_min):
 		delta_y = y_max - y_min
 		alpha_y_offset = -1. * delta_y * 0.04
 		alpha_rectangle_thickness = delta_y * 0.03
 		alpha_rectangle_linewidth = 2.
 		plt.gca().add_patch(mpatches.Rectangle((a_start, alpha_y_offset), a_end-a_start, 
-			alpha_rectangle_thickness, 
-			clip_on = False, 
-			linewidth = alpha_rectangle_linewidth, 
+			alpha_rectangle_thickness,
+			clip_on = False,
+			linewidth = alpha_rectangle_linewidth,
 			hatch = '/', # Comment this line if "hatch" is not needed.
-			facecolor = '#FFEB3B')
-		)
+			edgecolor = "black",
+			facecolor = '#FFEB3B'))
+
 	def __draw_beta(self, b_start, b_end, y_max, y_min):
 		delta_y = y_max - y_min
 		beta_y_offset = -1. * delta_y * 0.025
@@ -57,8 +62,8 @@ class DrawPorteinSSonXaxis(object):
 			linestyle = 'solid',
 			edgecolor = "black",
 			length_includes_head = True,
-			facecolor = '#9C27B0')
-		)
+			facecolor = '#9C27B0'))
+
 	def __draw_other(self, x_max, x_min, y_max, y_min):
 		delta_y = y_max - y_min
 		other_y_offset = -1. * delta_y * 0.03
@@ -66,8 +71,8 @@ class DrawPorteinSSonXaxis(object):
 		plt.gca().add_patch(mpatches.Rectangle((x_min, other_y_offset), x_max-x_min, 
 			other_rectangle_thickness, 
 			clip_on = False, 
-			color = 'black')
-		)
+			color = 'black'))
+
 	def draw(self):
 		self.__draw_other(self.x_max, self.x_min, self.y_max, self.y_min)
 		for hit_alpha_match in self.re_alpha_match.finditer(self.ss_info_new):
@@ -77,14 +82,17 @@ class DrawPorteinSSonXaxis(object):
 
 if __name__ == "__main__":
 	from random import randint
-# Generate data for test.
-	test_ss_name = "test_draw_protein_ss.dat"
+	### Generate data for test.
+	test_ss_name = "demo/test_draw_protein_ss.dat"
 	x_data = range(150)
 	y_data = [randint(0,150) for _ in range(150)]
-# Make the plot, then add SS legend.
-	plt.plot(x_data, y_data)
+	### Make the plot, then add SS legend.
+	plt.plot(x_data, y_data, color='k')
 	plt.xlim(min(x_data), max(x_data))	# reszie the x-axis.
+	plt.ylim(0)     # needs to set ymin as 0 for current SS legend offsets
+	plt.xlabel("Residues", labelpad=18)
+	plt.ylabel("Y axis")
 	plt.xticks([])	# remove xticks to avoid overlapping with SS legend.
 	test_ss = DrawPorteinSSonXaxis(test_ss_name) # add the SS legend AFTER the plot.
 	test_ss.draw()
-	plt.savefig(filename='test_draw_protein_ss.png', dpi=150, bbox_inches='tight')
+	pset.save('demo/test_draw_protein_ss.png')
