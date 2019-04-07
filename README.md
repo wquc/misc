@@ -26,3 +26,7 @@ Similar as CatDCD (https://www.ks.uiuc.edu/Development/MDTools/catdcd/) but CHAR
 ## 5-nfile.cpp
 Edit the `NFILE` entry of dcd header such that it corresponds to the actual frames of that trajectory file. Useful when dealing with CHARMM AFM simulations.
 *Currently still under debugging*.
+
+## 6-overlay.py
+Overlay foreground and background images for fancy result visualization. Note that RGB codes for white color rendered by VMD is not always `255, 255, 255` (sometimes `254, 254, 254`). Thus tools like `gpick` is helpful to determine the actualy color codes to setup transparency pixels in the foreground images.
+<img src="demo/demo-overlay.gif" width="60%" height="60%" alt="image of overlay" align="center" />
