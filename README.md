@@ -40,8 +40,8 @@ Calculate symmetrical average coordinate after rotation along an axis.
 
 - Input structure:
 
-<img src="demo/symm-avrg-before.png" width="60%" height="60%" alt="image of overlay" align="center" />
+<img src="demo/symm-avrg-before.png" width="40%" height="40%" alt="structure before averaging" align="center" />
 
 - Averaged structure after 7 rotations:
 
-<img src="demo/symm-avrg-after.png" width="60%" height="60%" alt="image of overlay" align="center" />
+<img src="demo/symm-avrg-after.png" width="40%" height="40%" alt="structure after averaging" align="center" />
