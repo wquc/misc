@@ -49,6 +49,16 @@ Calculate symmetrical average coordinate after rotation along an axis.
 ## 8-measure-pore
 ### 8.1-medial-axis.cpp
 Voronoi tessellation of polygon defined by connecting atoms of interest encompassing the pore of molecular machines.
+
+input demo:<br>
+```
+51.737  29.350
+46.354  26.340
+47.869  21.474
+52.073  16.979
+57.530  19.933
+55.936  24.811
+```
 ### 8.2-plot-medial.py
 Draw the tessellated polygon with the largest inscribed circle as shown below:
 
