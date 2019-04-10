@@ -20,6 +20,7 @@ For macromolecules with irregular shapes without proper alignment with respect t
 
 ## 3-pubfig.py
 Publication quality asthetics setup for scientific data visualization as shown below.
+
 <img src="demo/sinx.png" width="60%" height="60%" alt="image of pubfig" align="center" />
 
 ## 4-qatdcd.cpp
@@ -31,4 +32,16 @@ Edit the `NFILE` entry of dcd header such that it corresponds to the actual fram
 
 ## 6-overlay.py
 Overlay foreground and background images for fancy result visualization. Note that RGB codes for white color rendered by VMD is not always `255, 255, 255` (sometimes `254, 254, 254`). Thus tools like `gpick` is helpful to determine the actualy color codes to setup transparency pixels in the foreground images.
+
 <img src="demo/demo-overlay.gif" width="60%" height="60%" alt="image of overlay" align="center" />
+
+## 7-symm-avrg.py
+Calculate symmetrical average coordinate after rotation along an axis.
+
+- Input structure:
+
+<img src="demo/symm-avrg-before.png" width="60%" height="60%" alt="image of overlay" align="center" />
+
+- Averaged structure after 7 rotations:
+
+<img src="demo/symm-avrg-after.png" width="60%" height="60%" alt="image of overlay" align="center" />
