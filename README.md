@@ -23,6 +23,12 @@ Publication quality asthetics setup for scientific data visualization as shown b
 
 <img src="demo/3-pubfig-demo.png" width="60%" height="60%" alt="image of pubfig" align="center" />
 
+- Possible error: matplotlib - Font family [u'sans-serif'] not found
+
+- Solution:
+1. `sudo apt-get install msttcorefonts -qq`
+2. Then delete the content of `.cache/matplotlib`
+
 ## 4-qatdcd.cpp
 Similar as CatDCD (https://www.ks.uiuc.edu/Development/MDTools/catdcd/) but CHARMM compatible
 
