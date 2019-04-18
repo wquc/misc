@@ -43,7 +43,7 @@ Overlay foreground and background images for fancy result visualization. Note th
 ## 7-symm-avrg.py
 Calculate symmetrical average coordinate after rotation along an axis.
 
-- Input structure:
+- Input structure before averaging:
 
 <img src="demo/7-symm-avrg-before.png" width="40%" height="40%" alt="structure before averaging" align="center" />
 
