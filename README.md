@@ -63,3 +63,11 @@ input demo:<br>
 Draw the tessellated polygon with the largest inscribed circle as shown below:
 
 <img src="demo/8-medial-demo.png" width="80%" height="80%" alt="Voronoi tessellation of polygon of pore" align="center" />
+
+## 9-calc-rmsf
+Calculate root mean square fluctuations (RMSF).
+Usage: 
+1. Compile with `g++ calc-rmsf.cpp -o calc-rmsf`
+2. Run with `./calc-rmsf ${mode} ${psfname} ${dcdname} ${outname}`
+
+Currently implemented values for `mode` are `-1` (debugging with all atoms), `0` (CA atoms) and `1` (heavy atoms).
