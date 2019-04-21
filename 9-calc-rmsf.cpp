@@ -65,7 +65,7 @@ int main(int argc, char* argv[]) {
         return 0;
     }
     /* Parse input */
-    Int inp_mode = std::atoi(argv[1]);
+    int inp_mode = std::atoi(argv[1]);
     Str psf_name = argv[2];
     Str dcd_name = argv[3];
     Str out_name = argv[4];
