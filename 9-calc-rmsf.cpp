@@ -1,6 +1,6 @@
 /************************************
 > Calculate RMSF of a trajectory.
-> Compile with: g++ ez-rmsf.cpp
+> Compile with: g++ calc-rmsf.cpp
                       Q.W.(20190420)
 ************************************/
 #include <iostream>
