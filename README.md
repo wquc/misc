@@ -23,12 +23,17 @@ Publication quality asthetics setup for scientific data visualization as shown b
 
 <img src="demo/3-pubfig-demo.png" width="60%" height="60%" alt="image of pubfig" align="center" />
 
+- Possible error: matplotlib - Font family [u'sans-serif'] not found
+
+- Solution:
+1. `sudo apt-get install msttcorefonts -qq`
+2. Then delete the content of `.cache/matplotlib`
+
 ## 4-qatdcd.cpp
 Similar as CatDCD (https://www.ks.uiuc.edu/Development/MDTools/catdcd/) but CHARMM compatible
 
 ## 5-nfile.cpp
 Edit the `NFILE` entry of dcd header such that it corresponds to the actual frames of that trajectory file. Useful when dealing with CHARMM AFM simulations.
-*Currently still under debugging*.
 
 ## 6-overlay.py
 Overlay foreground and background images for fancy result visualization. Note that RGB codes for white color rendered by VMD is not always `255, 255, 255` (sometimes `254, 254, 254`). Thus tools like `gpick` is helpful to determine the actualy color codes to setup transparency pixels in the foreground images.
@@ -38,7 +43,7 @@ Overlay foreground and background images for fancy result visualization. Note th
 ## 7-symm-avrg.py
 Calculate symmetrical average coordinate after rotation along an axis.
 
-- Input structure:
+- Input structure before averaging:
 
 <img src="demo/7-symm-avrg-before.png" width="40%" height="40%" alt="structure before averaging" align="center" />
 
