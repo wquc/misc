@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
                   << "Usage>        -1 | debug mode (all atoms)\n"
                   << "Usage>         0 | CA atoms\n"
                   << "Usage>         1 | Heavy atoms\n";
-        return 0;
+        return 1;
     }
     /* Parse input */
     int inp_mode = std::atoi(argv[1]);
