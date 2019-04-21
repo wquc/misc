@@ -41,7 +41,6 @@ std::valarray<float> z_tmp;
 
 /* Helper functions declaration */
 bool is_queried_atom(const PsfAtom& atom, const Int& mode);
-Int  get_natom_entry(const Str& inp_str);
 Int  read_psf(const Str& inp_name, const Int& mode, const bool is_debugging);
 void calc_rmsf(const Str& inp_name, Int psf_natom, const bool is_debugging);
 void write_rmsf(const Str& out_name);
@@ -71,6 +70,7 @@ int main(int argc, char* argv[]) {
     Str dcd_name = argv[3];
     Str out_name = argv[4];
     const bool is_debugging = (-1==inp_mode) ? true : false;
+    /* Resize container and calculate RMSF */
     const auto NATOM = read_psf(psf_name, inp_mode, is_debugging);
     all_rmsf.resize(NATOM);
     x_avg.resize(NATOM);
@@ -82,8 +82,6 @@ int main(int argc, char* argv[]) {
     calc_rmsf(dcd_name, NATOM, is_debugging);
     write_rmsf(out_name);
 
-    // debug_psf();
-    // debug_dcd();
     return 0;
 }
 
@@ -96,13 +94,6 @@ bool is_queried_atom(const PsfAtom& atom, const Int& mode) {
     if(mode==2 && atom.type.front()!='H' && atom.type!="C" && atom.type!="O" 
                && atom.type!="N" && atom.type!="CA") return true;
     return false;
-}
-
-Int get_natom_entry(const Str& inp_str) {
-    Str tmp;
-    std::stringstream entry_stream(inp_str);
-    entry_stream >> tmp;
-    return std::atoi(tmp.c_str());
 }
 
 Int read_psf(const Str& inp_name, const Int& mode, const bool is_debugging) {
@@ -193,9 +184,9 @@ void calc_rmsf(const Str& inp_name, Int psf_natom, const bool is_debugging) {
     const auto pos = 100+80*ntitle+16;
     /* Process each frame to calculate average */
     const auto x_offset = (is_pbc) ? (15)                : (1);	
-	const auto y_offset = (is_pbc) ? (n_atom+17)         : (n_atom+3);
-	const auto z_offset = (is_pbc) ? (2*n_atom+19)       : (2*n_atom+5);
-	const auto sz_frame = (is_pbc) ? (3*(4*n_atom+8)+56) : (3*(4*n_atom+8));
+    const auto y_offset = (is_pbc) ? (n_atom+17)         : (n_atom+3);
+    const auto z_offset = (is_pbc) ? (2*n_atom+19)       : (2*n_atom+5);
+    const auto sz_frame = (is_pbc) ? (3*(4*n_atom+8)+56) : (3*(4*n_atom+8));
     std::cout << "ReadDCD> Averaging structure ...\n";
     std::valarray<float> corbuf(sz_frame);
     for (auto iframe=0; iframe < nframe; ++iframe) {
