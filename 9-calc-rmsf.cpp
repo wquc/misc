@@ -53,7 +53,9 @@ bool is_in(const T& inp_mode, std::initializer_list<T> avail_modes) {
 }
 
 template<typename T>
-void DEBUG(T inpinfo) { std::cout << "DEBUG> " << inpinfo << "\n"; }
+void DEBUG(T inpinfo) { 
+    std::cout << "DEBUG> " << inpinfo << "\n"; 
+}
 
 /* Read PSF and DCD to calculate RMSF */
 int main(int argc, char* argv[]) {
