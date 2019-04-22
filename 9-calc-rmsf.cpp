@@ -200,7 +200,7 @@ void calc_rmsf(const Str& inp_name, Int psf_natom, const bool is_debugging) {
     if (dcd_natom != psf_natom) std::cerr << "ERROR> PSF and DCD file mismatch!\n";
     const auto pos = 100+80*ntitle+16;
     /* Process each frame to calculate average */
-    const auto x_offset = (is_pbc) ? (15)                : (1);	
+    const auto x_offset = (is_pbc) ? (15)                   : (1);	
     const auto y_offset = (is_pbc) ? (dcd_natom+17)         : (dcd_natom+3);
     const auto z_offset = (is_pbc) ? (2*dcd_natom+19)       : (2*dcd_natom+5);
     const auto sz_frame = (is_pbc) ? (3*(4*dcd_natom+8)+56) : (3*(4*dcd_natom+8));
