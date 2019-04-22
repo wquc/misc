@@ -12,6 +12,7 @@
 #include <sstream>
 #include <iomanip>
 #include <valarray>
+#include <algorithm>
 
 /* User defined data name or type*/
 using Int  = size_t;
@@ -40,10 +41,16 @@ std::valarray<float> y_tmp;
 std::valarray<float> z_tmp;
 
 /* Helper functions declaration */
-bool is_queried_atom(const PsfAtom& atom, const Int& mode);
-Int  read_psf(const Str& inp_name, const Int& mode, const bool is_debugging);
+bool is_queried_atom(const PsfAtom& atom, const int& mode);
+Int  read_psf(const Str& inp_name, const int& mode, const bool is_debugging);
+void init_data(const Int& size);
 void calc_rmsf(const Str& inp_name, Int psf_natom, const bool is_debugging);
 void write_rmsf(const Str& out_name);
+
+template<typename T>
+bool is_in(const T& inp_mode, std::initializer_list<T> avail_modes) {
+    return std::find(std::begin(avail_modes), std::end(avail_modes), inp_mode) != std::end(avail_modes);
+}
 
 template<typename T>
 void DEBUG(T inpinfo) { std::cout << "DEBUG> " << inpinfo << "\n"; }
@@ -66,27 +73,35 @@ int main(int argc, char* argv[]) {
     }
     /* Parse input */
     int inp_mode = std::atoi(argv[1]);
+    if(!is_in(inp_mode, {-1, 0, 1})) {
+        std::cerr << "ERROR> Invalid mode.\n";
+        return 1;
+    }
     Str psf_name = argv[2];
     Str dcd_name = argv[3];
     Str out_name = argv[4];
     const bool is_debugging = (-1==inp_mode) ? true : false;
     /* Resize container and calculate RMSF */
-    const auto NATOM = read_psf(psf_name, inp_mode, is_debugging);
-    all_rmsf.resize(NATOM);
-    x_avg.resize(NATOM);
-    y_avg.resize(NATOM);
-    z_avg.resize(NATOM);
-    x_tmp.resize(NATOM);
-    y_tmp.resize(NATOM);
-    z_tmp.resize(NATOM);
-    calc_rmsf(dcd_name, NATOM, is_debugging);
+    const auto psf_natom = read_psf(psf_name, inp_mode, is_debugging);
+    init_data(psf_natom);
+    calc_rmsf(dcd_name, psf_natom, is_debugging);
     write_rmsf(out_name);
 
     return 0;
 }
 
 /* Helper functions definition */
-bool is_queried_atom(const PsfAtom& atom, const Int& mode) {
+void init_data(const Int& size) {
+    all_rmsf.resize(size);
+    x_avg.resize(size);
+    y_avg.resize(size);
+    z_avg.resize(size);
+    x_tmp.resize(size);
+    y_tmp.resize(size);
+    z_tmp.resize(size);
+}
+
+bool is_queried_atom(const PsfAtom& atom, const int& mode) {
     if(mode==-1 ) return true;
     if(mode==0 && "CA"==atom.type) return true;
     if(mode==1 && atom.type.front()!='H') return true;
@@ -96,7 +111,7 @@ bool is_queried_atom(const PsfAtom& atom, const Int& mode) {
     return false;
 }
 
-Int read_psf(const Str& inp_name, const Int& mode, const bool is_debugging) {
+Int read_psf(const Str& inp_name, const int& mode, const bool is_debugging) {
     std::cout << "ReadPSF> Reading PSF info from file: " << inp_name << "\n";
     std::ifstream inp_file(inp_name);
     if(!inp_file.is_open()) std::cerr << "Cannot open PSF file.\n";
@@ -179,21 +194,21 @@ void calc_rmsf(const Str& inp_name, Int psf_natom, const bool is_debugging) {
     }
     /* Check if psf and dcd files match */
     inp_file.read(hdrbuf, 16);
-    const auto n_atom = *(int*)(&hdrbuf[8]);
-    if (n_atom != psf_natom) std::cerr << "ERROR> PSF and DCD file mismatch!\n";
+    const auto dcd_natom = *(int*)(&hdrbuf[8]);
+    if (dcd_natom != psf_natom) std::cerr << "ERROR> PSF and DCD file mismatch!\n";
     const auto pos = 100+80*ntitle+16;
     /* Process each frame to calculate average */
     const auto x_offset = (is_pbc) ? (15)                : (1);	
-    const auto y_offset = (is_pbc) ? (n_atom+17)         : (n_atom+3);
-    const auto z_offset = (is_pbc) ? (2*n_atom+19)       : (2*n_atom+5);
-    const auto sz_frame = (is_pbc) ? (3*(4*n_atom+8)+56) : (3*(4*n_atom+8));
+    const auto y_offset = (is_pbc) ? (dcd_natom+17)         : (dcd_natom+3);
+    const auto z_offset = (is_pbc) ? (2*dcd_natom+19)       : (2*dcd_natom+5);
+    const auto sz_frame = (is_pbc) ? (3*(4*dcd_natom+8)+56) : (3*(4*dcd_natom+8));
     std::cout << "ReadDCD> Averaging structure ...\n";
     std::valarray<float> corbuf(sz_frame);
     for (auto iframe=0; iframe < nframe; ++iframe) {
         inp_file.read(reinterpret_cast<char*>(&corbuf[0]), sz_frame);
-        x_avg += corbuf[std::slice(x_offset, n_atom, 1)];
-        y_avg += corbuf[std::slice(y_offset, n_atom, 1)];
-        z_avg += corbuf[std::slice(z_offset, n_atom, 1)];
+        x_avg += corbuf[std::slice(x_offset, dcd_natom, 1)];
+        y_avg += corbuf[std::slice(y_offset, dcd_natom, 1)];
+        z_avg += corbuf[std::slice(z_offset, dcd_natom, 1)];
     }
     x_avg /= nframe;
     y_avg /= nframe;
@@ -203,9 +218,9 @@ void calc_rmsf(const Str& inp_name, Int psf_natom, const bool is_debugging) {
     inp_file.seekg(pos, std::ios::beg);
     for (auto iframe=0; iframe < nframe; ++iframe) {
         inp_file.read(reinterpret_cast<char*>(&corbuf[0]), sz_frame);
-        x_tmp = corbuf[std::slice(x_offset, n_atom, 1)];
-        y_tmp = corbuf[std::slice(y_offset, n_atom, 1)];
-        z_tmp = corbuf[std::slice(z_offset, n_atom, 1)];
+        x_tmp = corbuf[std::slice(x_offset, dcd_natom, 1)];
+        y_tmp = corbuf[std::slice(y_offset, dcd_natom, 1)];
+        z_tmp = corbuf[std::slice(z_offset, dcd_natom, 1)];
         all_rmsf += (x_tmp-x_avg)*(x_tmp-x_avg) + 
                     (y_tmp-y_avg)*(y_tmp-y_avg) +
                     (z_tmp-z_avg)*(z_tmp-z_avg);
@@ -216,9 +231,9 @@ void calc_rmsf(const Str& inp_name, Int psf_natom, const bool is_debugging) {
             DEBUG(y_tmp[0]);
             DEBUG(z_tmp[0]);
             DEBUG("(DCD) Coordinates of last  atom in frame#1:");
-            DEBUG(x_tmp[n_atom-1]);
-            DEBUG(y_tmp[n_atom-1]);
-            DEBUG(z_tmp[n_atom-1]);
+            DEBUG(x_tmp[dcd_natom-1]);
+            DEBUG(y_tmp[dcd_natom-1]);
+            DEBUG(z_tmp[dcd_natom-1]);
         }
         /********* DEBUG *********/
     }
