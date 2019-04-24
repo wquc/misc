@@ -9,6 +9,7 @@ Usage:
 
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 
 int main(int argc, char* argv[]) {
     if (argc<2) {
@@ -24,30 +25,29 @@ int main(int argc, char* argv[]) {
     int file_size = tmp_file.tellg(); 
     tmp_file.close();
     
-    char dcd_head1[100];
-    char dcd_title1[80];
-    char dcd_title2[80];
-    char dcd_head2[16];
-
     std::fstream inp_file(dcd_name, std::ios::binary | std::ios::in | std::ios::out);
-    inp_file.read(dcd_head1, 100);
-    inp_file.read(dcd_title1, 80);
-    inp_file.read(dcd_title2, 80);
-    inp_file.read(dcd_head2, 16);
-
-    int n_file = *(int*)(&dcd_head1[8]);
-    int q_cell = *(int*)(&dcd_head1[48]);
-    int n_atom = *(int*)(&dcd_head2[8]);
-    int sz_frame = q_cell ? (3*(4*n_atom+8)+56) : (3*(4*n_atom+8));
+    char hdrbuf[100];
+    inp_file.read(hdrbuf, 100);
+    auto n_file = *(int*)(&hdrbuf[8]);
+    const auto is_pbc = (1==*(int*)(&hdrbuf[48])) ? true:false;
+    /* Read and print title */    
+    const auto ntitle = *(int*)(&hdrbuf[96]);
+    for (int i=0; i<ntitle; ++i) {
+        inp_file.read(hdrbuf, 80);
+        std::cout << "ReadDCD> " << hdrbuf << "\n";
+    }
+    /* Check if psf and dcd files match */
+    inp_file.read(hdrbuf, 16);
+    const auto n_atom = *(int*)(&hdrbuf[8]);
+    const auto sz_header = 100+80*ntitle+16;
+    const auto sz_frame  = is_pbc ? (3*(4*n_atom+8)+56) : (3*(4*n_atom+8));
     
-    std::cout << "INFO> " << n_atom << " atoms detected.\n"
-              << "INFO> " << n_file << " frames expected.\n";
-    n_file = (file_size - 260) / sz_frame;
-    std::cout << "INFO> After correction, " << n_file << " frames will be used.\n";
+    std::cout << "INFO> NFILE before correction: "<< n_file << "\n";
+    n_file = (file_size - sz_header) / sz_frame;
     inp_file.seekp(8, std::ios::beg);
     inp_file.write(reinterpret_cast<const char*>(&n_file), 4);
     inp_file.close();
-    std::cout << "Done.\n";
+    std::cout << "INFO> NFILE after  correction: "<< n_file << "\n";
 
     return 0;
 }
