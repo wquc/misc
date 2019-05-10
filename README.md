@@ -76,3 +76,6 @@ Usage:
 2. Run with `./calc-rmsf ${mode} ${psfname} ${dcdname} ${outname}`
 
 Currently implemented values for `mode` are `-1` (debugging with all atoms), `0` (CA atoms) and `1` (heavy atoms).
+
+## 10-read-traj.py
+Processing DCD format molecular dynamics trajectories with Python.
