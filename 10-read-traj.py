@@ -32,6 +32,7 @@ def process_dcd(dcd_name):
 
 if __name__=='__main__'	:
     dcd_name = '1ubq.dcd'
+    ### Print Number of atoms, coordinates of 1st atom in 1st frame for testing.
     for natom, xcoor, ycoor, zcoor in process_dcd(dcd_name):
         print natom, xcoor[0], ycoor[0], zcoor[0]
         break
