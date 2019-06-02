@@ -1,5 +1,6 @@
 import numpy as np
 
+# Rotate current vector to target  vector in 3D (https://stackoverflow.com/questions/45142959)
 def rotMatOf3dVec(vec_curr, vec_targ):
     a = (vec_curr / np.linalg.norm(vec_curr)).reshape(3)
     b = (vec_targ / np.linalg.norm(vec_targ)).reshape(3)
@@ -68,7 +69,7 @@ if __name__=='__main__':
     with open(out_pdb_name, 'w') as out_file:
         out_file.write('\n'.join(each_atom.gen_entry() for each_atom in pdb_atom ))
 
-    # 5. Visualize fitting result if queried
+    # 5. Visualize fitting result if queried (https://stackoverflow.com/questions/2298390)
     if query_3dfit:
         import matplotlib.pyplot as plt
         import mpl_toolkits.mplot3d as m3d
