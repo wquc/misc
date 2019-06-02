@@ -98,4 +98,4 @@ grep ' CA ' 5vjh.pdb | grep ' P ' | awk '{print $7, $8, $9}' > channel.dat
 
 For a system without substrate present, channel residue atoms can also be used to find the channel vector. Below is a demo, where the origin `(0, 0, 0)` is shown as black bead and the arrow represents the Z axis.
 
-<img src="demo/11-orient-channel.png" width="80%" height="80%" alt="Voronoi tessellation of polygon of pore" align="center" />
+<img src="demo/11-orient-channel.png" width="80%" height="80%" alt="Before and after alignment of channel" align="center" />
