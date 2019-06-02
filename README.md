@@ -79,3 +79,23 @@ Currently implemented values for `mode` are `-1` (debugging with all atoms), `0`
 
 ## 10-read-traj.py
 Processing DCD format molecular dynamics trajectories with Python.
+
+## 11-orient-channel.py
+For a macromolecule machine with a channel, put its geometric center at `(0, 0, 0)` and rotate the system such that the channel vector is aligned with a certain principal axis in the Cartesian coordinate system.
+
+The following demo uses Hsp104 (PDB:5VJH) as an example, where the channel is defined as the best fitted 3D line from the coordinates of the CA atoms of the substrate. The `channel.dat` has the following format:
+```
+137.456 120.919 80.596
+136.939 121.250 84.346
+135.002 123.114 87.020
+...
+121.993 129.784 156.530
+```
+and can be obtained by 
+```
+grep ' CA ' 5vjh.pdb | grep ' P ' | awk '{print $7, $8, $9}' > channel.dat
+```
+
+For a system without substrate present, channel residue atoms can also be used to find the channel vector. Below is a demo, where the origin `(0, 0, 0)` is shown as black bead and the arrow represents the Z axis.
+
+<img src="demo/11-orient-channel.png" width="80%" height="80%" alt="Voronoi tessellation of polygon of pore" align="center" />
