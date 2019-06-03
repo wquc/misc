@@ -53,7 +53,6 @@ if __name__=='__main__':
     # 2. Center the system
     offset = -1.0*np.mean([each_atom.coor for each_atom in pdb_atom], axis=0)
     map(lambda each_atom:each_atom.trans_by(offset), pdb_atom)
-    offset = -1.0*np.mean([each_atom.coor for each_atom in pdb_atom], axis=0)
     
     # 3. find the best fitted vector along the channel - channel vector (normalized)
     #    np.linalg.svd() will return U, D, and V.  Thus [2] refers to V and [0] refers 
@@ -82,6 +81,4 @@ if __name__=='__main__':
         ax = m3d.Axes3D(plt.figure())
         ax.scatter3D(*chl_data.T)
         ax.plot3D(*linepts.T)
-        ax.set_aspect(1.0)
-        plt.savefig('fit3d.png', transparent=True)
         plt.show()
