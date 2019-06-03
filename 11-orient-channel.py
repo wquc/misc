@@ -1,6 +1,6 @@
 import numpy as np
 
-# Rotate current vector to target  vector in 3D (https://stackoverflow.com/questions/45142959)
+# Rotate current vector to target vector in 3D (https://stackoverflow.com/questions/45142959)
 def rotMatOf3dVec(vec_curr, vec_targ):
     a = (vec_curr / np.linalg.norm(vec_curr)).reshape(3)
     b = (vec_targ / np.linalg.norm(vec_targ)).reshape(3)
@@ -8,9 +8,8 @@ def rotMatOf3dVec(vec_curr, vec_targ):
     c = np.dot(a,b)
     s = np.linalg.norm(v)
     I = np.identity(3)
-    x = '%f %f %f; %f %f %f;  %f %f %f'%(0, -v[2], v[1], v[2], 0, -v[0], -v[1], v[0], 0)
-    k = np.matrix(x)
-    r = I + k + np.matmul(k,k) * ((1 -c)/(s**2))
+    N = np.array([0, -v[2], v[1], v[2], 0, -v[0], -v[1], v[0], 0]).reshape(3,3)
+    r = I + N + np.matmul(N,N) * ((1 -c)/(s**2))
     return r
 
 class PdbAtom():
@@ -28,7 +27,7 @@ class PdbAtom():
     def trans_by(self, dcoor):
         self.coor = self.coor + dcoor
     def rotate_by(self, rotamat):
-        self.coor = np.array(np.dot(rotamat, self.coor))[0]
+        self.coor = np.array(np.dot(rotamat, self.coor))#[0]
     def gen_entry(self):
         X = ' '
         return '%6s'%self.header + '%5d'%self.atomid + X + \
@@ -54,6 +53,7 @@ if __name__=='__main__':
     # 2. Center the system
     offset = -1.0*np.mean([each_atom.coor for each_atom in pdb_atom], axis=0)
     map(lambda each_atom:each_atom.trans_by(offset), pdb_atom)
+    offset = -1.0*np.mean([each_atom.coor for each_atom in pdb_atom], axis=0)
     
     # 3. find the best fitted vector along the channel - channel vector (normalized)
     #    np.linalg.svd() will return U, D, and V.  Thus [2] refers to V and [0] refers 
@@ -64,6 +64,7 @@ if __name__=='__main__':
     chl_vec = chl_vec / np.linalg.norm(chl_vec)
     
     # 4. Calculate the rotation matrix and apply to the system.
+    # rotamat = rotMatOf3dVec1(chl_vec, target_chl_vec)
     rotamat = rotMatOf3dVec(chl_vec, target_chl_vec)
     map(lambda each_atom:each_atom.rotate_by(rotamat), pdb_atom)
     with open(out_pdb_name, 'w') as out_file:
@@ -81,4 +82,6 @@ if __name__=='__main__':
         ax = m3d.Axes3D(plt.figure())
         ax.scatter3D(*chl_data.T)
         ax.plot3D(*linepts.T)
+        ax.set_aspect(1.0)
+        plt.savefig('fit3d.png', transparent=True)
         plt.show()
