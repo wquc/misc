@@ -1,7 +1,7 @@
 # MISC
 Miscellaneous scripts that make life easier
 
-## 0-dssp.py
+## [01-dssp.py](https://github.com/qi-wang-uc/misc/blob/master/01-dssp.py)
 
 Draw protein secondary structure legend on X axis as is shown in the figure:
 
@@ -9,16 +9,16 @@ Draw protein secondary structure legend on X axis as is shown in the figure:
 
 The asthetics are set by `3-pubfig.py`.
 
-## 1-data-picker.py
+## [02-data-picker.py](https://github.com/qi-wang-uc/misc/blob/master/02-data-picker.py)
 
 Print the **x and y coordinates** of a selected point, or the **residue**(name+index) **and property** of that residue if a **FASTA file** and **offset** are specified, for example:
 
 <img src="demo/1-pick-point.png" width="60%" height="60%" alt="image of test_pick_point" align="center" />
 
-## 2-retrive-viewpoint.py
+## [03-retrive-viewpoint.py](https://github.com/qi-wang-uc/misc/blob/master/03-retrive-viewpoint.py)
 For macromolecules with irregular shapes without proper alignment with respect to principal axis (X, Y or Z), it will be easier to use manually determined view perspectives. To re-use this view point, it is handy to save the matrix.
 
-## 3-pubfig.py
+## [04-pubfig.py](https://github.com/qi-wang-uc/misc/blob/master/04-pubfig.py)
 Publication quality asthetics setup for scientific data visualization as shown below.
 
 <img src="demo/3-pubfig-demo.png" width="60%" height="60%" alt="image of pubfig" align="center" />
@@ -29,18 +29,18 @@ Publication quality asthetics setup for scientific data visualization as shown b
 1. `sudo apt-get install msttcorefonts -qq`
 2. Then delete the content of `.cache/matplotlib`
 
-## 4-qatdcd.cpp
+## [05-qatdcd.cpp](https://github.com/qi-wang-uc/misc/blob/master/05-qatdcd.cpp)
 Similar as CatDCD (https://www.ks.uiuc.edu/Development/MDTools/catdcd/) but CHARMM compatible
 
-## 5-nfile.cpp
+## [06-nfile.cpp](https://github.com/qi-wang-uc/misc/blob/master/06-nfile.cpp)
 Edit the `NFILE` entry of dcd header such that it corresponds to the actual frames of that trajectory file. Useful when dealing with CHARMM AFM simulations.
 
-## 6-overlay.py
+## [07-overlay.py](https://github.com/qi-wang-uc/misc/blob/master/07-overlay.py)
 Overlay foreground and background images for fancy result visualization. Note that RGB codes for white color rendered by VMD is not always `255, 255, 255` (sometimes `254, 254, 254`). Thus tools like `gpick` is helpful to determine the actualy color codes to setup transparency pixels in the foreground images.
 
 <img src="demo/6-demo-overlay.gif" width="60%" height="60%" alt="image of overlay" align="center" />
 
-## 7-symm-avrg.py
+## [08-symm-avrg.py](https://github.com/qi-wang-uc/misc/blob/master/08-symm-avrg.py)
 Calculate symmetrical average coordinate after rotation along an axis.
 
 - Input structure before averaging:
@@ -51,8 +51,7 @@ Calculate symmetrical average coordinate after rotation along an axis.
 
 <img src="demo/7-symm-avrg-after.png" width="40%" height="40%" alt="structure after averaging" align="center" />
 
-## 8-measure-pore
-### 8.1-medial-axis.cpp
+## [09-medial-axis.cpp](https://github.com/qi-wang-uc/misc/blob/master/09-medial-axis.cpp)
 Voronoi tessellation of polygon defined by connecting atoms of interest encompassing the pore of molecular machines.
 
 input demo:<br>
@@ -64,12 +63,12 @@ input demo:<br>
 57.530  19.933
 55.936  24.811
 ```
-### 8.2-plot-medial.py
+## [09-plot-medial.py](https://github.com/qi-wang-uc/misc/blob/master/09-plot-medial.py)
 Draw the tessellated polygon with the largest inscribed circle as shown below:
 
 <img src="demo/8-medial-demo.png" width="80%" height="80%" alt="Voronoi tessellation of polygon of pore" align="center" />
 
-## 9-calc-rmsf
+## [10-calc-rmsf](https://github.com/qi-wang-uc/misc/blob/master/10-calc-rmsf.cpp)
 Calculate root mean square fluctuations (RMSF).
 Usage: 
 1. Compile with `g++ calc-rmsf.cpp -o calc-rmsf`
@@ -77,10 +76,10 @@ Usage:
 
 Currently implemented values for `mode` are `-1` (debugging with all atoms), `0` (CA atoms) and `1` (heavy atoms).
 
-## 10-read-traj.py
+## [11-read-traj.py](https://github.com/qi-wang-uc/misc/blob/master/11-read-traj.py)
 Processing DCD format molecular dynamics trajectories with Python.
 
-## 11-orient-channel.py
+## [12-orient-channel.py](https://github.com/qi-wang-uc/misc/blob/master/12-orient-channel.py)
 For a macromolecule machine with a channel, put its geometric center at `(0, 0, 0)` and rotate the system such that the channel vector is aligned with a certain principal axis in the Cartesian coordinate system.
 
 The following demo uses Hsp104 (PDB:5VJH) as an example, where the channel is defined as the best fitted 3D line from the coordinates of the CA atoms of the substrate. The `channel.dat` has the following format:
