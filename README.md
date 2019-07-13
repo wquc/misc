@@ -108,7 +108,8 @@ Usage using eukaryotic chaperonin CCT as an example:
 
 Output:
 ```
------> chain [A] (    2) to (  534)
+       chain [A] (    2) to (  534)
+-----------------------------------
 missing residue: (  141) to (  142)
 missing residue: (  182) to (  188)
 missing residue: (  218) to (  219)
@@ -116,21 +117,17 @@ missing residue: (  244) to (  270)
 missing residue: (  336) to (  341)
 missing residue: (  475) to (  482)
 
------> chain [B] (    9) to (  524)
+       chain [B] (    9) to (  524)
+-----------------------------------
 missing residue: (   56) to (   57)
 missing residue: (  150) to (  153)
 missing residue: (  222) to (  222)
 missing residue: (  247) to (  274)
 
-... (omitted for simplicity)
+...(omitted for simplicity)
 
------> chain [q] ( 1013) to ( 1528)
-missing residue: ( 1152) to ( 1154)
-missing residue: ( 1194) to ( 1195)
-missing residue: ( 1220) to ( 1369)
-missing residue: ( 1484) to ( 1485)
-
------> chain [z] ( 1004) to ( 1525)
+       chain [z] ( 1004) to ( 1525)
+-----------------------------------
 missing residue: ( 1182) to ( 1184)
 missing residue: ( 1214) to ( 1215)
 missing residue: ( 1240) to ( 1266)

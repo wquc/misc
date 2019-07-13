@@ -20,13 +20,12 @@ with open(inp_name, 'r') as inp_file:
 # 2. Probe missing residues in each chain
 for each_chain in sorted(chains.keys()):
     residues = chains[each_chain]
-    sys.stdout.write("-----> chain [%s] (%5d) to (%5d)\n" % 
-        (each_chain, residues[0], residues[-1]))
+    sys.stdout.write("       chain [%s] (%5d) to (%5d)\n"%(each_chain, residues[0], residues[-1]))
+    sys.stdout.write("%s\n"%("-"*35))
     ref_resid = residues[0]
     for each_resid in residues:
         if ref_resid != each_resid:
-            sys.stdout.write("missing residue: (%5d) to (%5d)\n" % 
-                (ref_resid, each_resid-1)) 
+            sys.stdout.write("missing residue: (%5d) to (%5d)\n"%(ref_resid, each_resid-1))
             ref_resid = each_resid
         ref_resid += 1
     sys.stdout.write("\n")
