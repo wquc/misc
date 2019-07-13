@@ -98,3 +98,41 @@ grep ' CA ' 5vjh.pdb | grep ' P ' | awk '{print $7, $8, $9}' > channel.dat
 For a system without substrate present, channel residue atoms can also be used to find the channel vector. Below is the result of channel fitting and reorientation, where the origin `(0, 0, 0)` is shown as black bead and the arrow represents the Z axis.
 
 <img src="demo/11-orient-channel.png" width="80%" height="80%" alt="Before and after alignment of channel" align="center" />
+
+## [13-misres-probe.py](https://github.com/qi-wang-uc/misc/blob/master/13-misres-probe.py)
+Probing missing residues in input RCSB PDB file.
+
+Usage using eukaryotic chaperonin CCT as an example: 
+
+```python misres-probe.py 4b2t.pdb```
+
+Output:
+```
+-----> chain [A] (    2) to (  534)
+missing residue: (  141) to (  142)
+missing residue: (  182) to (  188)
+missing residue: (  218) to (  219)
+missing residue: (  244) to (  270)
+missing residue: (  336) to (  341)
+missing residue: (  475) to (  482)
+
+-----> chain [B] (    9) to (  524)
+missing residue: (   56) to (   57)
+missing residue: (  150) to (  153)
+missing residue: (  222) to (  222)
+missing residue: (  247) to (  274)
+
+... (omitted for simplicity)
+
+-----> chain [q] ( 1013) to ( 1528)
+missing residue: ( 1152) to ( 1154)
+missing residue: ( 1194) to ( 1195)
+missing residue: ( 1220) to ( 1369)
+missing residue: ( 1484) to ( 1485)
+
+-----> chain [z] ( 1004) to ( 1525)
+missing residue: ( 1182) to ( 1184)
+missing residue: ( 1214) to ( 1215)
+missing residue: ( 1240) to ( 1266)
+missing residue: ( 1279) to ( 1287)
+```
