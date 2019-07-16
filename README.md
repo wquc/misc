@@ -1,7 +1,11 @@
 # MISC
 Miscellaneous scripts that make life easier
 
-## [01-dssp.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/01-dssp.py)
+# Table of contents
+1. [Draw protein secondary structure legend](#01)
+13. [Find missing residue segments of PDB files](#13)
+
+## [01-dssp.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/01-dssp.py)<a name="01"></a>
 
 Draw protein secondary structure legend on X axis as is shown in the figure:
 
@@ -99,7 +103,7 @@ For a system without substrate present, channel residue atoms can also be used t
 
 <img src="demo/11-orient-channel.png" width="80%" height="80%" alt="Before and after alignment of channel" align="center" />
 
-## [13-misres-probe.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/13-misres-probe.py)
+## [13-misres-probe.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/13-misres-probe.py)<a name="13"></a>
 Probing missing residues in input RCSB PDB file.
 
 Usage using eukaryotic chaperonin CCT as an example: 
