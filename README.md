@@ -160,7 +160,8 @@ Usage:
 2. Press `Q` to reset view.
 
 Notes:
-The output coordinate might need to be scaled to avoid automatic bond inferring by VMD. The labeled coordinate are not scaled back to keep consistent of the coordinate file.
+1. The output coordinate might need to be scaled to avoid automatic bond inferring by VMD. The labeled coordinate are not scaled back to keep consistent of the coordinate file.
+2. It is recommended to put the `axis` to the origion in VMD. In the following example, it was placed at default position for clarity.
 
 <img src="demo/14-viz-3d-vmd.png" width="50%" height="50%" alt="3D plot in matplotlib" />
 <img src="demo/14-viz-3d-vmd.gif" width="50%" height="50%" alt="3D plot in VMD" />
