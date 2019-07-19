@@ -15,6 +15,7 @@ Miscellaneous scripts that make life easier
 11. [Process binary DCD files with Python](#11)
 12. [Recenter and reorient a macromolecule with a threading channel](#12)
 13. [Find missing residue segments of original PDB files](#13)
+14. [Visualize and interact with 3D data in VMD](#14)
 
 ## [01-dssp.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/01-dssp.py)<a name="01"></a>
 
@@ -148,3 +149,18 @@ missing residue: ( 1214) to ( 1215)
 missing residue: ( 1240) to ( 1266)
 missing residue: ( 1279) to ( 1287)
 ```
+
+## [14-viz-3d-vmd.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/14-viz-3d-vmd.py)<a name="14"></a>
+Visualizing 3D data in `matplotlib` can be slow due to lacking of hardware acceleration.
+This script will convert the 3D data into a dummy coordinate file, then we can use VMD to visualize and interact
+with the data points.
+
+Usage:
+1. Press `W` to enter picking mode to print out custom information (Cartesian coordinates will be printed in the example). The picked point will also be highlighted (color can be changed based on VMD color code).
+2. Press `Q` to reset view.
+
+Notes:
+The output coordinate might need to be scaled to avoid automatic bond inferring by VMD. The labeled coordinate are not scaled back to keep consistent of the coordinate file.
+
+<img src="demo/14-viz-3d-vmd.png" width="50%" height="50%" alt="3D plot in matplotlib" />
+<img src="demo/14-viz-3d-vmd.gif" width="50%" height="50%" alt="3D plot in VMD" />
