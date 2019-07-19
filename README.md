@@ -4,7 +4,7 @@ Miscellaneous scripts that make life easier
 ### Table of contents
  1. [Draw protein secondary structure legend](#01)
  2. [Inspect a data point on matplotlib figure](#02)
- 3. [Retrive the view angle setup of VMD](#03)
+ 3. [Retrieve the view angle setup of VMD](#03)
  4. [Publication quality figure setup for matplotlib](#04)
  5. [Concatenate CHARMM dcd files](#05)
  6. [Correct the NFILE information of a broken DCD file](#06)
@@ -23,7 +23,7 @@ Draw protein secondary structure legend on X axis as is shown in the figure:
 
 <img src="demo/0-draw-protein-ss.png" width="60%" height="60%" alt="image of test_draw_protein_ss" align="center" />
 
-The asthetics are set by `3-pubfig.py`.
+The aesthetics are set by `3-pubfig.py`.
 
 ## [02-data-picker.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/02-data-picker.py)<a name="02"></a>
 
@@ -35,7 +35,7 @@ Print the **x and y coordinates** of a selected point, or the **residue**(name+i
 For macromolecules with irregular shapes without proper alignment with respect to principal axis (X, Y or Z), it will be easier to use manually determined view perspectives. To re-use this view point, it is handy to save the matrix.
 
 ## [04-pubfig.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/04-pubfig.py)<a name="04"></a>
-Publication quality asthetics setup for scientific data visualization as shown below.
+Publication quality aesthetics setup for scientific data visualization as shown below.
 
 <img src="demo/3-pubfig-demo.png" width="60%" height="60%" alt="image of pubfig" align="center" />
 
@@ -52,7 +52,7 @@ Similar as CatDCD (https://www.ks.uiuc.edu/Development/MDTools/catdcd/) but CHAR
 Edit the `NFILE` entry of dcd header such that it corresponds to the actual frames of that trajectory file. Useful when dealing with CHARMM AFM simulations.
 
 ## [07-overlay.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/07-overlay.py)<a name="07"></a>
-Overlay foreground and background images for fancy result visualization. Note that RGB codes for white color rendered by VMD is not always `255, 255, 255` (sometimes `254, 254, 254`). Thus tools like `gpick` is helpful to determine the actualy color codes to setup transparency pixels in the foreground images.
+Overlay foreground and background images for fancy result visualization. Note that RGB codes for white color rendered by VMD is not always `255, 255, 255` (sometimes `254, 254, 254`). Thus tools like `gpick` is helpful to determine the actual color codes to setup transparency pixels in the foreground images.
 
 <img src="demo/6-demo-overlay.gif" width="60%" height="60%" alt="image of overlay" align="center" />
 
@@ -161,7 +161,7 @@ Usage:
 
 Notes:
 1. The output coordinate might need to be scaled to avoid automatic bond inferring by VMD. The labeled coordinate are not scaled back to keep consistent of the coordinate file.
-2. It is recommended to put the `axis` to the origion in VMD. In the following example, it was placed at default position for clarity.
+2. It is recommended to put the `axis` to the origin in VMD. In the following example, it was placed at default position for clarity.
 
 <img src="demo/14-viz-3d-vmd.png" width="50%" height="50%" alt="3D plot in matplotlib" />
 <img src="demo/14-viz-3d-vmd.gif" width="50%" height="50%" alt="3D plot in VMD" />
