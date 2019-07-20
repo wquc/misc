@@ -27,7 +27,7 @@ The aesthetics are set by `04-pubfig.py`.
 
 ## [02-data-picker.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/02-data-picker.py)<a name="02"></a>
 
-Print the **x and y coordinates** of a selected point, or the **residue**(name+index) **and property** of that residue if a **FASTA file** and **offset** are specified. Single click for labeling and double click to clear, for example:
+Label the **residue** (name+index) on a "resid _vs_ property"plot if a **FASTA file** and corresponding **offset** are specified. Single click for labeling and double click to clear, for example:
 
 <img src="demo/02-data-picker.gif" width="60%" height="60%" alt="image of test_pick_point" align="center" />
 
