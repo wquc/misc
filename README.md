@@ -21,15 +21,15 @@ Miscellaneous scripts that make life easier
 
 Draw protein secondary structure legend on X axis as is shown in the figure:
 
-<img src="demo/0-draw-protein-ss.png" width="60%" height="60%" alt="image of test_draw_protein_ss" align="center" />
+<img src="demo/01-draw-protein-ss.png" width="60%" height="60%" alt="image of test_draw_protein_ss" align="center" />
 
-The aesthetics are set by `3-pubfig.py`.
+The aesthetics are set by `04-pubfig.py`.
 
 ## [02-data-picker.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/02-data-picker.py)<a name="02"></a>
 
-Print the **x and y coordinates** of a selected point, or the **residue**(name+index) **and property** of that residue if a **FASTA file** and **offset** are specified, for example:
+Print the **x and y coordinates** of a selected point, or the **residue**(name+index) **and property** of that residue if a **FASTA file** and **offset** are specified. Single click for labeling and double click to clear, for example:
 
-<img src="demo/1-pick-point.png" width="60%" height="60%" alt="image of test_pick_point" align="center" />
+<img src="demo/02-data-picker.gif" width="60%" height="60%" alt="image of test_pick_point" align="center" />
 
 ## [03-retrive-viewpoint.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/03-retrive-viewpoint.py)<a name="03"></a>
 For macromolecules with irregular shapes without proper alignment with respect to principal axis (X, Y or Z), it will be easier to use manually determined view perspectives. To re-use this view point, it is handy to save the matrix.
@@ -37,7 +37,7 @@ For macromolecules with irregular shapes without proper alignment with respect t
 ## [04-pubfig.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/04-pubfig.py)<a name="04"></a>
 Publication quality aesthetics setup for scientific data visualization as shown below.
 
-<img src="demo/3-pubfig-demo.png" width="60%" height="60%" alt="image of pubfig" align="center" />
+<img src="demo/04-pubfig-demo.png" width="60%" height="60%" alt="image of pubfig" align="center" />
 
 - Possible error: matplotlib - Font family [u'sans-serif'] not found
 
@@ -54,18 +54,18 @@ Edit the `NFILE` entry of dcd header such that it corresponds to the actual fram
 ## [07-overlay.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/07-overlay.py)<a name="07"></a>
 Overlay foreground and background images for fancy result visualization. Note that RGB codes for white color rendered by VMD is not always `255, 255, 255` (sometimes `254, 254, 254`). Thus tools like `gpick` is helpful to determine the actual color codes to setup transparency pixels in the foreground images.
 
-<img src="demo/6-demo-overlay.gif" width="60%" height="60%" alt="image of overlay" align="center" />
+<img src="demo/07-demo-overlay.gif" width="60%" height="60%" alt="image of overlay" align="center" />
 
 ## [08-symm-avrg.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/08-symm-avrg.py)<a name="08"></a>
 Calculate symmetrical average coordinate after rotation along an axis.
 
 - Input structure before averaging:
 
-<img src="demo/7-symm-avrg-before.png" width="40%" height="40%" alt="structure before averaging" align="center" />
+<img src="demo/08-symm-avrg-before.png" width="40%" height="40%" alt="structure before averaging" align="center" />
 
 - Averaged structure after 7 rotations:
 
-<img src="demo/7-symm-avrg-after.png" width="40%" height="40%" alt="structure after averaging" align="center" />
+<img src="demo/08-symm-avrg-after.png" width="40%" height="40%" alt="structure after averaging" align="center" />
 
 ## [09-medial-axis.cpp](https://github.com/qi-wang-uc/misc/blob/master/scripts/09-medial-axis.cpp)<a name="09"></a>
 Voronoi tessellation of polygon defined by connecting atoms of interest encompassing the pore of molecular machines.
@@ -82,7 +82,7 @@ input demo:<br>
 ## [09-plot-medial.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/09-plot-medial.py)
 Draw the tessellated polygon with the largest inscribed circle as shown below:
 
-<img src="demo/8-medial-demo.png" width="80%" height="80%" alt="Voronoi tessellation of polygon of pore" align="center" />
+<img src="demo/09-medial-demo.png" width="80%" height="80%" alt="Voronoi tessellation of polygon of pore" align="center" />
 
 ## [10-calc-rmsf](https://github.com/qi-wang-uc/misc/blob/master/scripts/10-calc-rmsf.cpp)<a name="10"></a>
 Calculate root mean square fluctuations (RMSF).
@@ -113,7 +113,7 @@ grep ' CA ' 5vjh.pdb | grep ' P ' | awk '{print $7, $8, $9}' > channel.dat
 
 For a system without substrate present, channel residue atoms can also be used to find the channel vector. Below is the result of channel fitting and reorientation, where the origin `(0, 0, 0)` is shown as black bead and the arrow represents the Z axis.
 
-<img src="demo/11-orient-channel.png" width="80%" height="80%" alt="Before and after alignment of channel" align="center" />
+<img src="demo/12-orient-channel.png" width="80%" height="80%" alt="Before and after alignment of channel" align="center" />
 
 ## [13-misres-probe.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/13-misres-probe.py)<a name="13"></a>
 Probing missing residues in input RCSB PDB file.

@@ -1,55 +1,54 @@
-# Modified from "data_browser.py" at 
-# https://matplotlib.org/devdocs/gallery/event_handling/data_browser.html
-# 
-# Author: Qi Wang (wang2qi@mail.uc.edu)
-
 import matplotlib.pyplot as plt
 
-class PickPoint(object):
-    def __init__(self, xArr, yArr):
-    	self.xArr = xArr
-    	self.yArr = yArr
-        self.selected, = plt.gca().plot(self.xArr, self.yArr, 'o', 
-        	markersize=12, alpha=0.5, color='yellow', visible=False)
-    def onpick(self, event):
-        self.dataind = event.ind[0]
-        self.selected.set_visible(True)
-        self.selected.set_data(self.xArr[self.dataind], self.yArr[self.dataind])
-        self.print_coor()
-        plt.gcf().canvas.draw()
-    def print_coor(self):
-    	print '> Selected point: (%s, %s)'%(self.xArr[self.dataind], self.yArr[self.dataind])
+class LabelResidue(object):
+    ''' Member description:
+        x : X axis data for plotting
+        y : Y axis data for plotting
+        p : Line2D objects to be toggled on/off for highlighting
+        t : text label
+        s : FASTA sequence
+        o : Offset of FASTA sequence from 0
+    '''
+    def __init__(self, xdata, ydata, fasta_name, fasta_offset):
+        self.x = xdata
+        self.y = ydata
+        self.p = plt.plot(self.x, self.y, 'o', ms=12, alpha=0.5, c='y', visible=False)[0]
+        self.t = None
+        self.o = fasta_offset
+        with open(fasta_name, 'r') as fn:
+            self.s = ''.join([l.strip() for l in fn if not l.startswith('>')])
 
-class PickPointSequence(PickPoint):
-	def __init__(self, xArr, yArr, fasta_name, fasta_offset):
-		super(PickPointSequence, self).__init__(xArr, yArr)
-		self.fasta_name = fasta_name
-		self.fasta_seq  = []
-		self.fasta_offset = fasta_offset
-		with open(self.fasta_name, 'r') as fasta_file:
-			for each_line in fasta_file:
-				if each_line.startswith('>'):
-					continue
-				self.fasta_seq += each_line.strip()
-	def print_coor(self):
-		print '> Selected point: residue %s%s (%s)'%(self.fasta_seq[self.dataind], 
-			self.xArr[self.dataind]+self.fasta_offset, self.yArr[self.dataind])
+    def onpick(self, event):
+        self.i = event.ind[0]
+        self.p.set_visible(True)
+        self.p.set_data(self.x[self.i], self.y[self.i])
+        self.label()
+        plt.draw()
+
+    def onpress(self, event):
+        if event.dblclick:
+            self.t.set_visible(False)
+            self.p.set_visible(False)
+
+    def label(self):
+        if self.t:
+            self.t.set_visible(False)
+        resname = '%s%s'%(self.s[self.i], self.i+self.o)
+        self.t = plt.text(self.x[self.i], self.y[self.i], resname)
 
 if __name__ == "__main__":
-	from random import randint
-	# Generate test data
-	x_data = range(10)
-	y_data = [randint(2, 9) for _ in range(10)]
-	# Make plot and connect to event
-	line, = plt.plot(x_data, y_data, '-o', lw=2, picker=10)  # pixel tolerance
-	
-	fasta_name = "test_pick_point.fasta"
-	fasta_offset = 2 # fasta_offset = nterm_id - x_1
-	# picked_point = PickPoint(x_data, y_data)	# example1 without fasta sequence
-	picked_point = PickPointSequence(x_data, y_data, fasta_name, fasta_offset)	# example2 with fasta sequence
+    from random import randint
+    ### 1. Generate test data and plot
+    x_data = range(10)
+    y_data = [randint(2, 9) for _ in range(10)]
+    plt.plot(x_data, y_data, '-o', lw=2, picker=10)
+    plt.xlim(-1,10)
+    plt.ylim( 1,10)
 
-	plt.gcf().canvas.mpl_connect('pick_event', picked_point.onpick)
-	# Make the points easy to pick
-	plt.xlim(-1,10)
-	plt.ylim( 1,10)
-	plt.show()
+    ### 2. Connect plot to matplotlib events
+    fasta_name = "0-pick-point.fasta"
+    fasta_offset = 2
+    picked_residue = LabelResidue(x_data, y_data, fasta_name, fasta_offset)
+    plt.gcf().canvas.mpl_connect('pick_event', picked_residue.onpick)
+    plt.gcf().canvas.mpl_connect('button_press_event', picked_residue.onpress)
+    plt.show()
