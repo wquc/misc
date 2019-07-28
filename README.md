@@ -16,6 +16,7 @@ Miscellaneous scripts that make life easier
 12. [Recenter and reorient a macromolecule with a threading channel](#12)
 13. [Find missing residue segments of original PDB files](#13)
 14. [Visualize and interact with 3D data in VMD](#14)
+15. [Handle 2D data using histogram and kernel density estimation](#15)
 
 ## [01-dssp.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/01-dssp.py)<a name="01"></a>
 
@@ -165,3 +166,7 @@ Notes:
 
 <img src="demo/14-viz-3d-vmd.png" width="50%" height="50%" alt="3D plot in matplotlib" />
 <img src="demo/14-viz-3d-vmd.gif" width="50%" height="50%" alt="3D plot in VMD" />
+
+## [15-plot-h2d-kde.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/15-plot-h2d-kde.py)<a name="15"></a>
+Plot 2D data using 2 dimensional histogram (left) and kernel density estimation (right).
+<img src="demo/15-h2d-kde.png" width="90%" height="90%" alt="2D heatmap" />
