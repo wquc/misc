@@ -19,39 +19,45 @@
 #   (2) delete the content of .cache/matplotlib
 ##################################################################
 
-
-def setup(fs1=16, fs2=16):
-	from matplotlib import rcParams
-	_fontsize1 = fs1
-	_linewidth = 2
-	rcParams['axes.labelsize']=fs2
-	rcParams['axes.linewidth']=2
-	# x ticks setup
-	rcParams['xtick.labelsize']=_fontsize1
-	rcParams['xtick.direction']='in'
-	rcParams['xtick.top']=True
-	rcParams['xtick.major.width']=2
-	rcParams['xtick.major.size']=5
-	rcParams['xtick.minor.top']=True
-	rcParams['xtick.minor.visible']=True
-	rcParams['xtick.minor.width']=1.5
-	rcParams['xtick.minor.size']=4
-	# y ticks setup
-	rcParams['ytick.labelsize']=_fontsize1
-	rcParams['ytick.direction']='in'
-	rcParams['ytick.right']=True
-	rcParams['ytick.major.width']=2
-	rcParams['ytick.major.size']=5
-	rcParams['ytick.minor.right']=True
-	rcParams['ytick.minor.visible']=True
-	rcParams['ytick.minor.width']=1.5
-	rcParams['ytick.minor.size']=4
-	
-	rcParams['font.family'] = 'sans-serif'
-	rcParams['font.sans-serif'] = ['Times New Roman']
-	rcParams['mathtext.fontset'] = 'cm'
-	#####################################
+def setup(labelfont=16, tickfont=16, showminorticks=False):
+    from matplotlib import rcParams
+    # canvas setup
+    rcParams['axes.labelsize']=labelfont
+    rcParams['axes.linewidth']=2
+    # x ticks setup
+    rcParams['xtick.labelsize']=tickfont
+    rcParams['xtick.direction']='in'
+    rcParams['xtick.top']=True
+    rcParams['xtick.minor.visible']=showminorticks
+    rcParams['xtick.major.width']=2
+    rcParams['xtick.major.size']=5
+    rcParams['xtick.minor.top']=True
+    rcParams['xtick.minor.width']=1.5
+    rcParams['xtick.minor.size']=4
+    # y ticks setup
+    rcParams['ytick.labelsize']=tickfont
+    rcParams['ytick.direction']='in'
+    rcParams['ytick.right']=True
+    rcParams['ytick.minor.visible']=showminorticks
+    rcParams['ytick.major.width']=2
+    rcParams['ytick.major.size']=5
+    rcParams['ytick.minor.right']=True
+    rcParams['ytick.minor.width']=1.5
+    rcParams['ytick.minor.size']=4
+    # font family
+    rcParams['font.family'] = 'sans-serif'
+    rcParams['font.sans-serif'] = ['Times New Roman']
+    rcParams['mathtext.fontset'] = 'cm'
 
 def save(img_name):
-	from matplotlib import pyplot
-	pyplot.savefig(img_name, dpi=300, bbox_inches='tight')
+    from matplotlib import pyplot
+    pyplot.savefig(img_name, dpi=300, bbox_inches='tight')
+
+if __name__ == "__main__":
+    import numpy as np
+    import matplotlib.pyplot as plt
+    setup()
+    x = np.linspace(-100, 100, 100)
+    y = np.sin(x)
+    plt.plot(x, y)
+    plt.show()
