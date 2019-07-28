@@ -14,6 +14,7 @@ def h2dplot(x, y, nbins=40):
     xmin, xmax = gen_lowerboundary(x.min()), gen_upperboundary(x.max())
     ymin, ymax = gen_lowerboundary(y.min()), gen_upperboundary(y.max())
     extent = [xmin, xmax, ymin, ymax]
+    
     fig, ax = plt.subplots()
     hist, xbins, ybins = np.histogram2d(x, y, bins=nbins, normed=True)
     im = ax.imshow(np.ma.masked_where(0==hist, hist).T, 
@@ -26,7 +27,6 @@ def h2dplot(x, y, nbins=40):
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
     ax.set_aspect(1.0)
-    # plt.show()
     plt.savefig("h2d.png", format='png', dpi=100, bbox_inches='tight')
     plt.close()
 
@@ -39,12 +39,11 @@ def kdeplot(x, y, nlevels=10, nbins=100):
     #----- Generate meshgrid and run kernel density estimation -----
     xMesh, yMesh = np.mgrid[xmin:xmax:nbins*1j, ymin:ymax:nbins*1j]
     positions = np.vstack([xMesh.ravel(), yMesh.ravel()])
-    values = np.vstack([xArr, yArr])
+    values = np.vstack([x, y])
     kernel = st.gaussian_kde(values)
     zMesh = np.reshape(kernel(positions).T, xMesh.shape)
 
     #----- Plot the results -----
-    # ax = plt.figure(figsize=(8, 6)).gca()
     ax = plt.figure().gca()
     levels = ax.contour(xMesh, yMesh, zMesh, nlevels, colors='k').levels
     levels = np.concatenate([[0.0], levels, [levels[-1]+levels[0]]])
@@ -64,10 +63,8 @@ def kdeplot(x, y, nlevels=10, nbins=100):
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
     ax.set_aspect(1.0)
-    # plt.show()
     plt.savefig("kde.png", format='png', dpi=100, bbox_inches='tight')
     plt.close()
-
 
 if __name__ == "__main__":
     np.random.seed(0)
