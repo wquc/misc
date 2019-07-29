@@ -47,7 +47,7 @@ Publication quality aesthetics setup for scientific data visualization as shown 
 2. Then delete the content of `.cache/matplotlib`
 
 - Usage tips:
-1. Run the Bash script by
+1. Run the [Bash script](https://github.com/qi-wang-uc/misc/blob/master/scripts/04-pubfig-install.sh) by
 ```
 ./04-pubfig-install.sh mymod
 ```
