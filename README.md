@@ -46,6 +46,21 @@ Publication quality aesthetics setup for scientific data visualization as shown 
 1. `sudo apt-get install msttcorefonts -qq`
 2. Then delete the content of `.cache/matplotlib`
 
+- Usage tips:
+1. Run the Bash script by
+```
+./04-pubfig-install.sh mymod
+```
+, where `mymod` is the custom folder name (such as `$USER`).
+
+2. Then the Python script can be used as
+```
+from mymod import pubfig
+pubfig.setup()
+# make plots here
+pubfig.save('img.png')
+```
+
 ## [05-qatdcd.cpp](https://github.com/qi-wang-uc/misc/blob/master/scripts/05-qatdcd.cpp)<a name="05"></a>
 Similar as CatDCD (https://www.ks.uiuc.edu/Development/MDTools/catdcd/) but CHARMM compatible
 
