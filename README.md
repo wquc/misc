@@ -17,6 +17,7 @@ Miscellaneous scripts that make life easier
 13. [Find missing residue segments of original PDB files](#13)
 14. [Visualize and interact with 3D data in VMD](#14)
 15. [Handle 2D data using histogram and kernel density estimation](#15)
+16. [Submit jobs automatically to server](#16)
 
 ## [01-dssp.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/01-dssp.py)<a name="01"></a>
 
@@ -185,3 +186,7 @@ Notes:
 ## [15-plot-h2d-kde.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/15-plot-h2d-kde.py)<a name="15"></a>
 Plot 2D data using 2 dimensional histogram (left) and kernel density estimation (right).
 <img src="demo/15-h2d-kde.png" width="90%" height="90%" alt="2D heatmap" />
+
+## [16-auto-submit.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/16-auto-submit.py)<a name="16"></a>
+
+Submit jobs (post forms) to a server automatically. Need `chromedriver` tool and `selenium` library. In the demo, the MMTSB Go Model Builder is used as an example. This is handy when dealing with massive PDB files. Make sure to choose a proper time interval between job submissions (Be nice to the server!)
