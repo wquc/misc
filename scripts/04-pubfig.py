@@ -19,31 +19,33 @@
 #   (2) delete the content of .cache/matplotlib
 ##################################################################
 
-def setup(labelfont=16, tickfont=16, showminorticks=False):
+def setup(label_font=16, tick_font=16, axis_width=2, 
+	tick_major_width=2, tick_minor_width=1.5, 
+	tick_major_size=5, tick_minor_size=4, showminorticks=False):
     from matplotlib import rcParams
     # canvas setup
-    rcParams['axes.labelsize']=labelfont
-    rcParams['axes.linewidth']=2
+    rcParams['axes.labelsize']=label_font
+    rcParams['axes.linewidth']=axis_width
     # x ticks setup
-    rcParams['xtick.labelsize']=tickfont
+    rcParams['xtick.labelsize']=tick_font
     rcParams['xtick.direction']='in'
     rcParams['xtick.top']=True
     rcParams['xtick.minor.visible']=showminorticks
-    rcParams['xtick.major.width']=2
-    rcParams['xtick.major.size']=5
+    rcParams['xtick.major.width']=tick_major_width
+    rcParams['xtick.major.size']=tick_major_size
     rcParams['xtick.minor.top']=True
-    rcParams['xtick.minor.width']=1.5
-    rcParams['xtick.minor.size']=4
+    rcParams['xtick.minor.width']=tick_minor_width
+    rcParams['xtick.minor.size']=tick_minor_size
     # y ticks setup
-    rcParams['ytick.labelsize']=tickfont
+    rcParams['ytick.labelsize']=tick_font
     rcParams['ytick.direction']='in'
     rcParams['ytick.right']=True
     rcParams['ytick.minor.visible']=showminorticks
-    rcParams['ytick.major.width']=2
-    rcParams['ytick.major.size']=5
+    rcParams['ytick.major.width']=tick_major_width
+    rcParams['ytick.major.size']=tick_major_size
     rcParams['ytick.minor.right']=True
-    rcParams['ytick.minor.width']=1.5
-    rcParams['ytick.minor.size']=4
+    rcParams['ytick.minor.width']=tick_minor_width
+    rcParams['ytick.minor.size']=tick_minor_size
     # font family
     rcParams['font.family'] = 'sans-serif'
     rcParams['font.sans-serif'] = ['Times New Roman']
