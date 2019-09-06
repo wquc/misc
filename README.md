@@ -18,6 +18,7 @@ Miscellaneous scripts that make life easier
 14. [Visualize and interact with 3D data in VMD](#14)
 15. [Handle 2D data using histogram and kernel density estimation](#15)
 16. [Submit jobs automatically to server](#16)
+17. [Label residues in VMD OpenGL display](#17)
 
 ## [01-dssp.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/01-dssp.py)<a name="01"></a>
 
@@ -190,3 +191,16 @@ Plot 2D data using 2 dimensional histogram (left) and kernel density estimation 
 ## [16-auto-submit.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/16-auto-submit.py)<a name="16"></a>
 
 Submit jobs (post forms) to a server automatically. Need `chromedriver` tool and `selenium` library. In the demo, the MMTSB Go Model Builder is used as an example. This is handy when dealing with massive PDB files. Make sure to choose a proper time interval between job submissions (Be nice to the server!)
+
+## [17-label-residue.tcl](https://github.com/qi-wang-uc/misc/blob/master/scripts/17-label-residue.tcl)<a name="17"></a>
+
+Label residue names as shown in the demo:
+
+<img src="demo/17-label-residue.gif" width="50%" height="50%" alt="2D heatmap" />
+
+Usage:
+After loading with `vmd protein.pdb -e label-residue.tcl` or `source label-residue.tcl` in VMD Tcl console:
+- Press `W` to label residue names
+- Press `Z` to undo a label
+- Press `Q` to clear all labels
+
