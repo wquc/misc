@@ -28,7 +28,6 @@ proc query_atom { args } {
     set y [lindex $coor 1]
     set z [lindex $coor 2]
     
-    set info [format "%4.3f %4.3f %4.3f" $x $y $z]
     set last_labeled [draw text "$x $y $z" $name size 1 thickness 2]
     lappend label_ids $last_labeled
 }
