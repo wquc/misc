@@ -19,6 +19,7 @@ Miscellaneous scripts that make life easier
 15. [Handle 2D data using histogram and kernel density estimation](#15)
 16. [Submit jobs automatically to server](#16)
 17. [Label residues in VMD OpenGL display](#17)
+18. [Remove duplicate bib entries when merging multiple bibtex files](#18)
 
 ## [01-dssp.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/01-dssp.py)<a name="01"></a>
 
@@ -204,3 +205,5 @@ After loading with `vmd protein.pdb -e label-residue.tcl` or `source label-resid
 - Press `Z` to undo a label
 - Press `Q` to clear all labels
 
+## [18-make-nonrepeat-bib.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/18-make-nonrepeat-bib.py)<a name="18"></a>
+Removing duplicate entries in the `.bib` file based on the zero-duplicate-key property of Python dictionaries. Note that for duplicates entries, only the last one in the duplicates will be kept.
