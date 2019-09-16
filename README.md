@@ -205,5 +205,5 @@ After loading with `vmd protein.pdb -e label-residue.tcl` or `source label-resid
 - Press `Z` to undo a label
 - Press `Q` to clear all labels
 
-## [18-make-nonrepeat-bib.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/18-make-nonrepeat-bib.py)<a name="18"></a>
+## [18-make-unique-bib.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/18-make-unique-bib.py)<a name="18"></a>
 Removing duplicate entries in the `.bib` file based on the zero-duplicate-key property of Python dictionaries. Note that for duplicates entries, only the last one in the duplicates will be kept.
