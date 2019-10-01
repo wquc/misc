@@ -23,6 +23,8 @@ def setup(label_font=16, tick_font=16, axis_width=2,
 	tick_major_width=2, tick_minor_width=1.5, 
 	tick_major_size=5, tick_minor_size=4, showminorticks=False):
     from matplotlib import rcParams
+    # Conversion of unicode minus sign
+    rcParams['axes.unicode_minus']=False
     # canvas setup
     rcParams['axes.labelsize']=label_font
     rcParams['axes.linewidth']=axis_width
@@ -53,7 +55,9 @@ def setup(label_font=16, tick_font=16, axis_width=2,
 
 def save(img_name):
     from matplotlib import pyplot
-    pyplot.savefig(img_name, dpi=300, bbox_inches='tight')
+    pyplot.savefig(img_name+'.png', dpi=300, bbox_inches='tight')
+    pyplot.savefig(img_name+'.pdf', dpi=300, bbox_inches='tight')
+    pyplot.savefig(img_name+'.svg', dpi=300, bbox_inches='tight')
 
 if __name__ == "__main__":
     import numpy as np
