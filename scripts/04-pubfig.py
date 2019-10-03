@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 ##################################################################
 # Publication quality figure setup
 #
@@ -19,9 +17,9 @@
 #   (2) delete the content of .cache/matplotlib
 ##################################################################
 
-def setup(label_font=16, tick_font=16, axis_width=2, 
-	tick_major_width=2, tick_minor_width=1.5, 
-	tick_major_size=5, tick_minor_size=4, showminorticks=False):
+def setup(label_font=18, tick_font=16, axis_width=2, 
+    tick_major_width=2, tick_minor_width=1.5, 
+    tick_major_size=5, tick_minor_size=4, showminorticks=False):
     from matplotlib import rcParams
     # Conversion of unicode minus sign
     rcParams['axes.unicode_minus']=False
@@ -62,8 +60,14 @@ def save(img_name):
 if __name__ == "__main__":
     import numpy as np
     import matplotlib.pyplot as plt
-    setup()
-    x = np.linspace(-100, 100, 100)
+    setup(showminorticks=True)
+    x = np.linspace(0, 2*np.pi, 100)
     y = np.sin(x)
-    plt.plot(x, y)
+    fig, axs = plt.subplots()
+    axs.plot(x, y, linewidth=2, color="tab:blue")
+    axs.set_xticks([0, np.pi, 2*np.pi])
+    axs.set_xlim(x.min(), x.max())
+    axs.set_xticklabels([0, "$\pi$", "$2\pi$"])
+    axs.set_xlabel("$x$")
+    axs.set_ylabel("sin($x$)")
     plt.show()
