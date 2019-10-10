@@ -54,6 +54,10 @@ def setup(label_font=18, tick_font=16, axis_width=2,
 def save(img_name):
     from matplotlib import pyplot
     pyplot.savefig(img_name+'.png', dpi=300, bbox_inches='tight')
+
+def save3(img_name):
+    from matplotlib import pyplot
+    pyplot.savefig(img_name+'.png', dpi=300, bbox_inches='tight')
     pyplot.savefig(img_name+'.pdf', dpi=300, bbox_inches='tight')
     pyplot.savefig(img_name+'.svg', dpi=300, bbox_inches='tight')
 
