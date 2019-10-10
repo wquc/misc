@@ -49,7 +49,7 @@ Publication quality aesthetics setup for scientific data visualization as shown 
 1. `sudo apt-get install msttcorefonts -qq`
 2. Then delete the content of `.cache/matplotlib`
 
-- Usage tips:
+- Usage tips (might not work for Anaconda users):
 1. Run the [Bash script](https://github.com/qi-wang-uc/misc/blob/master/scripts/04-pubfig-install.sh) by
 ```
 ./04-pubfig-install.sh mymod
