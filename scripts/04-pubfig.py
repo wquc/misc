@@ -19,7 +19,8 @@
 
 def setup(label_font=18, tick_font=16, axis_width=2, 
     tick_major_width=2, tick_minor_width=1.5, 
-    tick_major_size=5, tick_minor_size=4, showminorticks=False):
+    tick_major_size=5, tick_minor_size=4, 
+    showmajorticks=True, showminorticks=False):
     from matplotlib import rcParams
     # Conversion of unicode minus sign
     rcParams['axes.unicode_minus']=False
@@ -32,7 +33,7 @@ def setup(label_font=18, tick_font=16, axis_width=2,
     rcParams['xtick.top']=True
     rcParams['xtick.minor.visible']=showminorticks
     rcParams['xtick.major.width']=tick_major_width
-    rcParams['xtick.major.size']=tick_major_size
+    rcParams['xtick.major.size']=tick_major_size if showmajorticks else 0
     rcParams['xtick.minor.top']=True
     rcParams['xtick.minor.width']=tick_minor_width
     rcParams['xtick.minor.size']=tick_minor_size
@@ -42,7 +43,7 @@ def setup(label_font=18, tick_font=16, axis_width=2,
     rcParams['ytick.right']=True
     rcParams['ytick.minor.visible']=showminorticks
     rcParams['ytick.major.width']=tick_major_width
-    rcParams['ytick.major.size']=tick_major_size
+    rcParams['ytick.major.size']=tick_major_size if showmajorticks else 0
     rcParams['ytick.minor.right']=True
     rcParams['ytick.minor.width']=tick_minor_width
     rcParams['ytick.minor.size']=tick_minor_size
@@ -51,12 +52,18 @@ def setup(label_font=18, tick_font=16, axis_width=2,
     rcParams['font.sans-serif'] = ['Times New Roman']
     rcParams['mathtext.fontset'] = 'cm'
 
-def save(img_name):
+def save(img_name, width=0, height=0):
     from matplotlib import pyplot
+    if 0==width or 0==height:
+        width, height = pyplot.gcf().get_size_inches()
+    pyplot.gcf().set_size_inches(width, height)
     pyplot.savefig(img_name+'.png', dpi=300, bbox_inches='tight')
 
-def save3(img_name):
+def save3(img_name, width=0, height=0):
     from matplotlib import pyplot
+    if 0==width or 0==height:
+        width, height = pyplot.gcf().get_size_inches()
+    pyplot.gcf().set_size_inches(width, height)
     pyplot.savefig(img_name+'.png', dpi=300, bbox_inches='tight')
     pyplot.savefig(img_name+'.pdf', dpi=300, bbox_inches='tight')
     pyplot.savefig(img_name+'.svg', dpi=300, bbox_inches='tight')
@@ -64,7 +71,10 @@ def save3(img_name):
 if __name__ == "__main__":
     import numpy as np
     import matplotlib.pyplot as plt
-    setup(showminorticks=True)
+
+    ### setup() usage:
+    setup(showmajorticks=False, showminorticks=False)    
+
     x = np.linspace(0, 2*np.pi, 100)
     y = np.sin(x)
     fig, axs = plt.subplots()
@@ -74,4 +84,7 @@ if __name__ == "__main__":
     axs.set_xticklabels([0, "$\pi$", "$2\pi$"])
     axs.set_xlabel("$x$")
     axs.set_ylabel("sin($x$)")
-    plt.show()
+
+    ### save() or save3() usage:
+    save("demo-default-figsize")
+    save("demo-custom-fig-size", 4, 3)
