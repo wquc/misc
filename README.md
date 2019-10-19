@@ -212,4 +212,9 @@ Removing duplicate entries in the `.bib` file based on the zero-duplicate-key pr
 ## [19-draw-saltbridge.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/19-draw-saltbridge.tcl)<a name="19"></a>
 Draw a dashed line as salt bridge between the center of `NE`, `NH1` and `NH2` atoms in Arg (blue) and center of `OE1` and `OE2` atoms in Glu (pink). The frame change in VMD will be traced to update user defined drawing.
 
+Usage:
+
+1. In VMD Tkconsole, `source draw-saltbridge.tcl`
+2. `enabletrace` and `disabletrace` to toggle on/off drawing of salt bridge
+
 <img src="demo/19-saltbridge-demo.gif" width="50%" height="50%" alt="Arg-Glu salt bridge">
