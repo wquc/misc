@@ -20,6 +20,7 @@ Miscellaneous scripts that make life easier
 16. [Submit jobs automatically to server](#16)
 17. [Label residues in VMD OpenGL display](#17)
 18. [Remove duplicate bib entries when merging multiple bibtex files](#18)
+19. [Draw weighted salt bridge dynamically](#19)
 
 ## [01-dssp.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/01-dssp.py)<a name="01"></a>
 
@@ -207,3 +208,8 @@ After loading with `vmd protein.pdb -e label-residue.tcl` or `source label-resid
 
 ## [18-make-unique-bib.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/18-make-unique-bib.py)<a name="18"></a>
 Removing duplicate entries in the `.bib` file based on the zero-duplicate-key property of Python dictionaries. Note that for duplicates entries, only the last one in the duplicates will be kept.
+
+## [19-draw-saltbridge.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/19-draw-saltbridge.py)<a name="19"></a>
+Draw a dashed line as salt bridge between the center of `NE`, `NH1` and `NH2` atoms in Arg (blue) and center of `OE1` and `OE2` atoms in Glu (pink). The frame change in VMD will be traced to update user defined drawing.
+
+<img src="demo/19-saltbridge-demo.gif" width="50%" height="50%" alt="Arg-Glu salt bridge">
