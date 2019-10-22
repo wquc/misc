@@ -52,21 +52,35 @@ def setup(label_font=18, tick_font=16, axis_width=2,
     rcParams['font.sans-serif'] = ['Times New Roman']
     rcParams['mathtext.fontset'] = 'cm'
 
-def save(img_name, width=0, height=0):
-    from matplotlib import pyplot
-    if 0==width or 0==height:
-        width, height = pyplot.gcf().get_size_inches()
-    pyplot.gcf().set_size_inches(width, height)
-    pyplot.savefig(img_name+'.png', dpi=300, bbox_inches='tight')
+def label(axs, case='upper', xratio=0.005, yratio=0.85, fontsize=18):
+    import numpy as np
+    import sys
+    if type(axs) is not np.ndarray:
+        sys.stdout.write("Label setup ignored: Axs type is not np.ndarray.\n")
+        return
+    import string
+    if 'upper'==case:
+        labels = string.ascii_uppercase
+    if 'lower'==case:
+        labels = string.ascii_lowercase
+    for i, ax in enumerate(axs.flatten()):
+        ax.text(xratio, yratio, "(%s)"%labels[i], transform=ax.transAxes, size=fontsize)
 
-def save3(img_name, width=0, height=0):
+def save(img_name, dpi=300, width=0, height=0):
     from matplotlib import pyplot
     if 0==width or 0==height:
         width, height = pyplot.gcf().get_size_inches()
     pyplot.gcf().set_size_inches(width, height)
-    pyplot.savefig(img_name+'.png', dpi=300, bbox_inches='tight')
-    pyplot.savefig(img_name+'.pdf', dpi=300, bbox_inches='tight')
-    pyplot.savefig(img_name+'.svg', dpi=300, bbox_inches='tight')
+    pyplot.savefig(img_name+'.png', dpi=dpi, bbox_inches='tight')
+
+def save3(img_name, dpi=300, width=0, height=0):
+    from matplotlib import pyplot
+    if 0==width or 0==height:
+        width, height = pyplot.gcf().get_size_inches()
+    pyplot.gcf().set_size_inches(width, height)
+    pyplot.savefig(img_name+'.png', dpi=dpi, bbox_inches='tight')
+    pyplot.savefig(img_name+'.pdf', dpi=dpi, bbox_inches='tight')
+    pyplot.savefig(img_name+'.svg', dpi=dpi, bbox_inches='tight')
 
 if __name__ == "__main__":
     import numpy as np
@@ -76,14 +90,26 @@ if __name__ == "__main__":
     setup(showmajorticks=False, showminorticks=False)    
 
     x = np.linspace(0, 2*np.pi, 100)
-    y = np.sin(x)
-    fig, axs = plt.subplots()
-    axs.plot(x, y, linewidth=2, color="tab:blue")
-    axs.set_xticks([0, np.pi, 2*np.pi])
-    axs.set_xlim(x.min(), x.max())
-    axs.set_xticklabels([0, "$\pi$", "$2\pi$"])
-    axs.set_xlabel("$x$")
-    axs.set_ylabel("sin($x$)")
+    y1 = np.sin(x)
+    y2 = np.sin(2*x)
+    fig, axs = plt.subplots(2,1)
+
+    axs[0].plot(x, y1, linewidth=2, color="tab:blue")
+    axs[0].set_xticks([0, np.pi, 2*np.pi])
+    axs[0].set_xlim(x.min(), x.max())
+    axs[0].set_xticklabels([0, "$\pi$", "$2\pi$"])
+    axs[0].set_xlabel("$x$")
+    axs[0].set_ylabel("sin($x$)")
+
+    axs[1].plot(x, y2, linewidth=2, color="tab:red")
+    axs[1].set_xticks([0, np.pi, 2*np.pi])
+    axs[1].set_xlim(x.min(), x.max())
+    axs[1].set_xticklabels([0, "$\pi$", "$2\pi$"])
+    axs[1].set_xlabel("$x$")
+    axs[1].set_ylabel("sin($2x$)")
+
+    fig.align_ylabels(axs)
+    label(axs)
 
     ### save() or save3() usage:
     save("demo-default-figsize")

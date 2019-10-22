@@ -44,6 +44,30 @@ Publication quality aesthetics setup for scientific data visualization as shown 
 
 <img src="demo/04-pubfig-demo.png" width="60%" height="60%" alt="image of pubfig" align="center" />
 
+- Script of demo:
+```
+import matplotlib.pyplot as plt
+import pubfig as pf
+
+# 1. setup before making plots
+pf.setup()
+
+# 2. make plots
+fig, axs = plt.subplots(2, 2)
+
+import numpy as np # only for demo purpose
+axs[0][0].scatter(np.random.randn(100), np.random.randn(100), color='tab:blue')
+axs[0][1].hist(np.random.randn(100), color='tab:red')
+axs[1][0].plot(range(100), np.random.randn(100), color='tab:gray')
+axs[1][1].fill(np.random.randn(100), np.random.randn(100), color='tab:green')
+
+# 3. label subfigures if necessary
+pf.label(axs)
+
+# 4. save figure 
+pf.save("test")
+```
+
 - Possible error: matplotlib - Font family [u'sans-serif'] not found
 
 - Solution:
