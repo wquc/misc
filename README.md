@@ -21,6 +21,7 @@ Miscellaneous scripts that make life easier
 17. [Label residues in VMD OpenGL display](#17)
 18. [Remove duplicate bib entries when merging multiple bibtex files](#18)
 19. [Draw weighted salt bridge dynamically](#19)
+20. [Concatenate CHARMM coordinates to binary DCD file](#20)
 
 ## [01-dssp.py](https://github.com/qi-wang-uc/misc/blob/master/scripts/01-dssp.py)<a name="01"></a>
 
@@ -242,3 +243,13 @@ Usage:
 2. `enabletrace` and `disabletrace` to toggle on/off drawing of salt bridge
 
 <img src="demo/19-saltbridge-demo.gif" width="50%" height="50%" alt="Arg-Glu salt bridge">
+
+## [20-qatcor.cpp](https://github.com/qi-wang-uc/misc/blob/master/scripts/20-qatcor.cpp)<a name="20"></a>
+Convert CHARMM coordinates to binary trajectory file.
+
+Usage:
+```
+g++ qatcor.cpp -o qatcor.exe
+./qatcor.exe input.psf inp1.cor inp2.cor ... inpN.cor
+```
+The output filename will be `input.dcd` (derived from PSF filename).
